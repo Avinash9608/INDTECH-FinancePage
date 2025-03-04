@@ -16,7 +16,7 @@
 /* Logo Slide */
 .logo-slide {
   flex: 0 0 auto;
-  width: 250px; /* Fixed width for each logo */
+  width: 250px !important;
   display: flex;
   justify-content: center;
   align-items: center;

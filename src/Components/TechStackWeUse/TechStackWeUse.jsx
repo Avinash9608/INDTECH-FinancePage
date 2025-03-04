@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap CSS is imported
-import "./TechStackWeUse.css"; // Import the CSS file for animations
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./TechStackWeUse.css";
 
-// Import images from "../../assets/images/"
+// Import images
 import languages1 from "../../assets/images/languages_1.svg";
 import languages2 from "../../assets/images/languages_2.svg";
 import languages3 from "../../assets/images/languages_3.svg";
@@ -143,9 +143,9 @@ const TechStackWeUse = () => {
             <h2 className="font-40 mb-2 we-serve__title">Tech Stack We Use</h2>
             <p className="font-18 mt-3 px-md-5">
               Successful mobile app development in Dubai demands mastery of
-              high-end technologies to keep pace with the ever- evolving
-              dynamics of this vibrant city. Thus, we have engineers of all
-              technologies in our Dubai office.
+              high-end technologies to keep pace with the ever-evolving dynamics
+              of this vibrant city. Thus, we have engineers of all technologies
+              in our Dubai office.
             </p>
           </div>
           <div className="tech_us wow zoomin pt-4">
@@ -154,53 +154,33 @@ const TechStackWeUse = () => {
               id="hovertabeslid_tab"
               role="tablist"
               aria-orientation="vertical"
-              data-mouse="hover"
             >
               {tabs.map((tab) => (
-                <button
+                <Tab
                   key={tab.id}
-                  className={`nav-link ${activeTab === tab.id ? "active" : ""}`}
-                  onMouseEnter={() => setActiveTab(tab.id)} // Change logos on hover
-                >
-                  <p>{tab.title}</p>
-                </button>
+                  tab={tab}
+                  isActive={activeTab === tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                />
               ))}
             </div>
-            <div
-              className="techs-main lightgraybg br-24 tab-content wow slideInUp p-4 wow slideInUp"
-              id="hovertabeslid_tabContent"
-            >
-              {tabs.map((tab) => (
-                <div
-                  key={tab.id}
-                  className={`tab-pane pnl1 ${
-                    activeTab === tab.id ? "active" : ""
-                  }`}
-                  id={tab.id}
-                  role="tabpanel"
-                  aria-labelledby={`${tab.id}-tab`}
-                  tabIndex="0"
-                >
-                  <div className="logo-slider-container">
-                    <div className="logo-slider-track">
-                      {/* First set of logos */}
-                      {tab.content.map((item, index) => (
-                        <div key={index} className="logo-slide">
-                          <img src={item.icon} alt={item.name} />
-                          <h4>{item.name}</h4>
-                        </div>
-                      ))}
-                      {/* Duplicate logos for seamless looping */}
-                      {tab.content.map((item, index) => (
-                        <div key={`dup-${index}`} className="logo-slide">
-                          <img src={item.icon} alt={item.name} />
-                          <h4>{item.name}</h4>
-                        </div>
-                      ))}
-                    </div>
+            <div className="techs-main lightgraybg br-24 tab-content wow slideInUp p-4 wow slideInUp">
+              {tabs
+                .filter((tab) => tab.id === activeTab)
+                .map((tab) => (
+                  <div
+                    key={tab.id}
+                    className={`tab-pane pnl1 ${
+                      activeTab === tab.id ? "active" : ""
+                    }`}
+                    id={tab.id}
+                    role="tabpanel"
+                    aria-labelledby={`${tab.id}-tab`}
+                    tabIndex="0"
+                  >
+                    <LogoSlider logos={tab.content} />
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
@@ -208,5 +188,36 @@ const TechStackWeUse = () => {
     </section>
   );
 };
+
+const Tab = ({ tab, isActive, onClick }) => (
+  <button
+    className={`nav-link ${isActive ? "active" : ""}`}
+    onMouseEnter={onClick}
+    onFocus={onClick}
+    aria-selected={isActive}
+    role="tab"
+  >
+    <p>{tab.title}</p>
+  </button>
+);
+
+const LogoSlider = ({ logos }) => (
+  <div className="logo-slider-container">
+    <div className="logo-slider-track">
+      {logos.map((item, index) => (
+        <div key={index} className="logo-slide">
+          <img src={item.icon} alt={item.name} />
+          <h4>{item.name}</h4>
+        </div>
+      ))}
+      {logos.map((item, index) => (
+        <div key={`dup-${index}`} className="logo-slide">
+          <img src={item.icon} alt={item.name} />
+          <h4>{item.name}</h4>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 export default TechStackWeUse;
