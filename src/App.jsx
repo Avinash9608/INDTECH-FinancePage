@@ -29,6 +29,8 @@ import SocialMediaDevelopmentApproach from "./Components/SocialMediaDevelopmentA
 import Glimpse from "./Components/Glimpse/Glimpse.jsx";
 import FullStackCustom from "./Components/FullStackCustom/FullStackCustom.jsx";
 import TechStackWeUse from "./Components/TechStackWeUse/TechStackWeUse.jsx";
+import WhyChooseUs from "./Components/WhyChooseUs/WhyChooseUs.jsx";
+import AdvancedTechnologies from "./Components/AdvancedTechnologies/AdvancedTechnologies.jsx";
 function App() {
   return (
     <Router>
@@ -36,10 +38,12 @@ function App() {
       <HeroBanner />
       <FullStackCustom />
       <TechStackWeUse />
-      <SocialMedia />
-      <TransformSocialMediaApp />
-      <LetDiscuss />
-      <SocialMediaDevelopmentApproach />
+      <WhyChooseUs />
+      <AdvancedTechnologies />
+      {/* <SocialMedia /> */}
+      {/* <TransformSocialMediaApp /> */}
+      {/* <LetDiscuss /> */}
+      {/* <SocialMediaDevelopmentApproach /> */}
       <Glimpse />
       <Insight />
       <FAQs />
